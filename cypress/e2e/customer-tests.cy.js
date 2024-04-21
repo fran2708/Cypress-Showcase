@@ -5,7 +5,7 @@ describe('customer tests', () => {
     const customer = new Customer()
 
     beforeEach(() => {
-        cy.login('Hermoine Granger')
+        customer.login('Hermoine Granger')
     })
 
     it('should deposit', () => {
@@ -43,6 +43,7 @@ describe('customer tests', () => {
         cy.clock(now)
         cy.visit('/account')
 
+        // if the app used an API to handle transactions, I would use that to load a couple and search for those
         customer.depositButton.click()
         customer.inputField.type('100')
         customer.submitButton.click()

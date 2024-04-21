@@ -54,6 +54,21 @@ class Customer {
     get logoutButton() {
         return cy.get('.logout')
     }
+
+    /**
+     * Logs in a user by visiting the '/customer' page, selecting the user from a dropdown,
+     * clicking the submit button, and asserting that the logged in user's name is displayed.
+     *
+     * @param {string} user - The name of the user to log in as.
+     */
+    login(user) {
+        // cy.session([user], () => {   cant use session in this app because of the way data is loaded
+        cy.visit('/customer')
+        cy.get('#userSelect').select(`${user}`)
+        cy.get('[type=submit]').click()
+        cy.get('[class="fontBig ng-binding"]').should('have.text', user)
+        // })
+    }
 }
 
 export default Customer
