@@ -43,7 +43,7 @@ describe('manager tests', () => {
         });
     })
 
-    it.only('should delete customer', () => {
+    it('should delete customer', () => {
         manager.addCustomerBtn.click()
         manager.addCustomer('Delete', 'Customer', 1234)
 
