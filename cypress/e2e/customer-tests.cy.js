@@ -9,7 +9,6 @@ describe('customer tests', () => {
     })
 
     it('should deposit', () => {
-        cy.visit('/account')
         customer.balance.invoke('text').then(balanceText => {
             const balance = parseFloat(balanceText)
             customer.depositButton.click()
@@ -24,7 +23,6 @@ describe('customer tests', () => {
     })
 
     it('should withdraw', () => {
-        cy.visit('/account')
         customer.balance.invoke('text').then(balanceText => {
             const balance = parseFloat(balanceText)
             customer.withdrawButton.click()
@@ -41,7 +39,6 @@ describe('customer tests', () => {
     it('should show filtered transactions', () => {
         const now = new Date(2050, 10, 10).getTime()
         cy.clock(now)
-        cy.visit('/account')
 
         // if the app used an API to handle transactions, I would use that to load a couple and search for those
         customer.depositButton.click()
@@ -64,7 +61,6 @@ describe('customer tests', () => {
     })
 
     it('should change account', () => {
-        cy.visit('/account')
         customer.accountSelector.select('1001')
         customer.accountNumber.should('have.text', '1001 ')
         customer.accountSelector.select('1002')
@@ -74,7 +70,6 @@ describe('customer tests', () => {
     })
     
     it('should logout', () => {
-        cy.visit('/account')
         customer.logoutButton.click()
         cy.get('#userSelect').should('be.visible')
     })
