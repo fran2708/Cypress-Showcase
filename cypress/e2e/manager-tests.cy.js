@@ -59,4 +59,52 @@ describe('manager tests', () => {
                 }
             })
     })
+
+    it('should sort by first name', () => {
+        let storedText = []
+
+        manager.customersBtn.click()
+        cy.get(':nth-child(1) > a').click().click()
+        cy.get('tbody tr td:nth-child(1)')
+            .each(($el) => {
+                storedText.push($el.text())
+            })
+            .then(() => {
+                const sorted = Cypress._.sortBy(storedText)
+        
+                expect(storedText, 'correctly sorted').to.deep.equal(sorted)
+            })
+    })
+
+    it('should sort by last name', () => {
+        let storedText = []
+
+        manager.customersBtn.click()
+        cy.get(':nth-child(2) > a').click().click()
+        cy.get('tbody tr td:nth-child(2)')
+            .each(($el) => {
+                storedText.push($el.text())
+            })
+            .then(() => {
+                const sorted = Cypress._.sortBy(storedText)
+        
+                expect(storedText, 'correctly sorted').to.deep.equal(sorted)
+            })
+    })
+
+    it('should sort by post code', () => {
+        let storedText = []
+
+        manager.customersBtn.click()
+        cy.get(':nth-child(3) > a').click().click()
+        cy.get('tbody tr td:nth-child(3)')
+            .each(($el) => {
+                storedText.push($el.text())
+            })
+            .then(() => {
+                const sorted = Cypress._.sortBy(storedText)
+        
+                expect(storedText, 'correctly sorted').to.deep.equal(sorted)
+            })
+    })
 })
