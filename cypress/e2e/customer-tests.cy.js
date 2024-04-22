@@ -11,9 +11,11 @@ describe('customer tests', () => {
     it('should deposit', () => {
         customer.balance.invoke('text').then(balanceText => {
             const balance = parseFloat(balanceText)
+
             customer.depositButton.click()
             customer.inputField.type('100')
             customer.submitButton.click()
+
             cy.get('[ng-show=message]').should('have.text', 'Deposit Successful')
             customer.balance.invoke('text').then(updatedBalanceText => {
                 const updatedBalance = parseFloat(updatedBalanceText)
@@ -25,9 +27,11 @@ describe('customer tests', () => {
     it('should withdraw', () => {
         customer.balance.invoke('text').then(balanceText => {
             const balance = parseFloat(balanceText)
+
             customer.withdrawButton.click()
             customer.inputField.type('100')
             customer.submitButton.click()
+
             cy.get('[ng-show=message]').should('have.text', 'Transaction successful')
             customer.balance.invoke('text').then(updatedBalanceText => {
                 const updatedBalance = parseFloat(updatedBalanceText)
@@ -63,8 +67,10 @@ describe('customer tests', () => {
     it('should change account', () => {
         customer.accountSelector.select('1001')
         customer.accountNumber.should('have.text', '1001 ')
+
         customer.accountSelector.select('1002')
         customer.accountNumber.should('have.text', '1002 ')
+        
         customer.accountSelector.select('1003')
         customer.accountNumber.should('have.text', '1003 ')
     })
